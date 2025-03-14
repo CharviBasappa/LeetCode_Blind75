@@ -1,6 +1,5 @@
 from typing import List, Optional
 
-# Definition for a binary tree node.
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
         self.val = val
@@ -12,20 +11,16 @@ class Solution:
         if not preorder or not inorder:
             return None
 
-        # The first element of preorder is always the root
         root_val = preorder[0]
         root = TreeNode(root_val)
 
-        # Find the root index in inorder list
         root_index = inorder.index(root_val)
 
-        # Recursively construct left and right subtrees
         root.left = self.buildTree(preorder[1:root_index+1], inorder[:root_index])
         root.right = self.buildTree(preorder[root_index+1:], inorder[root_index+1:])
 
         return root
 
-# Helper function to print the tree in level-order (BFS)
 from collections import deque
 
 def level_order_traversal(root: Optional[TreeNode]) -> List[Optional[int]]:
@@ -44,7 +39,6 @@ def level_order_traversal(root: Optional[TreeNode]) -> List[Optional[int]]:
         else:
             result.append(None)
 
-    # Trim trailing None values
     while result and result[-1] is None:
         result.pop()
 
